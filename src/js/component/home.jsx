@@ -16,15 +16,15 @@ const Home = () => {
 	};
 
 	return (
-		<div className="text-center container">
-			<h1 className="text-center mt-5">To Do List</h1>
+		<div className="text-center container bg-light p-5 mt-5">
+			<h1 className="text-center mb-5">To Do List</h1>
 			<input
 				className="form-control"
 				value={newTodo}
 				placeholder="Añade tu tarea aquí..."
 				onChange={(e) => setNewTodo(e.target.value)}
 				onKeyDown={(e) => {
-					if (e.key === "Enter") {
+					if (e.key === "Enter" && newTodo.trim() !== "") {
 						addTodo();
 					}
 				}}
@@ -33,7 +33,7 @@ const Home = () => {
 				{todos.map((todo, index) => (
 					<li
 						key={index}
-						className="list-group-item d-flex justify-content-between align-items-center"
+						className="list-group-item d-flex justify-content-between align-items-center "
 					>
 						{todo}
 						<button
@@ -46,6 +46,9 @@ const Home = () => {
 					</li>
 				))}
 			</ul>
+			<div className="mt-5">
+				<p>Tareas pendientes: {todos.length}</p>
+			</div>
 		</div>
 	);
 };
